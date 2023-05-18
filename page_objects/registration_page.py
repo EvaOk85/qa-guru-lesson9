@@ -65,7 +65,7 @@ class RegistrationPage:
         return self
 
 
-    def fill_state (self, name):
+    def fill_state(self, name):
         self.state.perform(command.js.scroll_into_view)
         self.state.click()
         browser.all('[id^=react-select][id*=option]').element_by(
@@ -73,18 +73,20 @@ class RegistrationPage:
         ).click()
         return self
 
-    def fill_city (self, name):
+
+    def fill_city(self,name):
         browser.element('#city').click()
         browser.all('[id^=react-select][id*=option]').element_by(
             have.exact_text(name)
         ).click()
-        return self
+        return  self
+
 
     def fill_submit (self):
         browser.element('#submit').perform(command.js.click)
         return self
 
-    def should_registered_user_with (self, full_name, email, gender,mobile,date_of_birth,subjects,hobbies,picture,current_address,state,city):
+    def should_registered_user_with (self, full_name, email, gender,mobile,date_of_birth,subjects,hobbies,picture,current_address,state_city):
         # todo: refactor to reuse parameters
         browser.element('.table').all('td').even.should(
             have.exact_texts(
@@ -97,8 +99,7 @@ class RegistrationPage:
                 hobbies,
                 picture,
                 current_address,
-                state,
-                city
+                state_city
             )
         )
         return self
