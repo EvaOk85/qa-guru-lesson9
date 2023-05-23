@@ -1,6 +1,6 @@
-import os
-
 from selene import browser, have, command
+
+from tests.conftest import RESOURCE_PATH
 
 
 class RegistrationPage:
@@ -56,8 +56,8 @@ class RegistrationPage:
         browser.all('.custom-checkbox').element_by(have.exact_text(value)).click()
         return self
 
-    def fill_picture (self,path):
-        browser.element('#uploadPicture').send_keys(os.getcwd() + f'/{path}')
+    def fill_picture (self,value):
+        browser.element('#uploadPicture').set_value(f'{RESOURCE_PATH}/{value}')
         return self
 
     def fill_current_address (self, value):
