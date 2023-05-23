@@ -1,5 +1,5 @@
 import os
-
+from tests.conftest import RESOURCE_PATH
 from selene import browser, have, command
 
 from data.users import User
@@ -29,7 +29,7 @@ class RegistrationPage:
         ).click()
         browser.element('#subjectsInput').type(student.subjects).press_enter()
         browser.all('.custom-checkbox').element_by(have.exact_text(student.hobbies)).click()
-        browser.element('#uploadPicture').send_keys(os.getcwd() + f'/{student.picture}')
+        browser.element('#uploadPicture').set_value(f'{RESOURCE_PATH}/{student.picture}')
         browser.element('#currentAddress').type(student.address)
         browser.element('#state').click()
         browser.all('[id^=react-select][id*=option]').element_by(have.exact_text(student.state)).click()
